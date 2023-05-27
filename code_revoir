@@ -1,0 +1,46 @@
+"""
+
+def treeActionSelect(ecent):
+    global selected_customer
+
+    # load image
+    label_image.destroy()
+    idSelect = tree.item(tree.selection())['values'][0]
+    nameSelect = tree.item(tree.selection())['values'][1]
+    phoneSelect = tree.item(tree.selection())['values'][2]
+    moreInfoSelect = tree.item(tree.selection())['values'][3]
+
+    imgProfile = "images/profile_" + str(idSelect) + "." + "jpg"
+    print(imgProfile)
+    load = Image.open(imgProfile)
+    load.thumbnail((100,100))
+    photo = ImageTk.PhotoImage(load)
+    Profile[1] = photo
+    lblImage = Label(root, bg= "blue", image = photo)
+    lblImage.place(x=10, y=350)
+    lid = Label(root, text = "ID : " + str(idSelect))
+    lid.place(x=110, y=350)
+    lname = Label(root, text= "Name :" + nameSelect)
+    lname.place(x=110, y=380)
+    lphone = Label(root, text="Phone :" + str(phoneSelect))
+    lphone.place(x=110, y=410)
+    Tmore = Text(root)
+    Tmore.place(x=260, y=360, width=280, height=100)
+    Tmore.insert(END, "More info : " + moreInfoSelect)
+
+#text = "Moreinfo : " + moreInfoSelect
+
+    # Mettre à jour la variable selected_customer avec les informations du client sélectionné
+    selected_customer = {
+        "id": idSelect,
+        "name": nameSelect,
+        "phone": phoneSelect,
+        "more_info": moreInfoSelect
+    }
+
+    # Ouvrir la fenêtre de paiement avec le client sélectionné
+    payment_window.show_payment_window(selected_customer)
+
+# Appel de la fonction treeActionSelect avec le paramètre approprié
+treeActionSelect(None)
+"""
